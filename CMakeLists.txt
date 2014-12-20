@@ -57,10 +57,8 @@ find_package(jsoncpp REQUIRED)
 # resulting source and headers are generated in binary dir
 # include binary dir to allow includes of headers
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-# needed to locate google/protobuf/desciptor.proto
-set(PROTOBUF_IMPORT_DIRS ${PROTOBUF_INCLUDE_DIRS})
 # generate files and add them to the build
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS src/config/config.proto)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS vendor/trezor-common/protob/config.proto)
 set(SRCS ${SRCS} ${PROTO_SRCS} ${PROTO_HDRS})
 
 add_executable(trezord ${SRCS})
