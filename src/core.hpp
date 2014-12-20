@@ -19,7 +19,7 @@
 
 #include "protobuf/json_codec.hpp"
 #include "protobuf/wire_codec.hpp"
-#include "config/config.pb.h"
+#include "config.pb.h"
 #include "crypto.hpp"
 
 #include <boost/bind.hpp>
