@@ -53,11 +53,15 @@ find_package(Boost 1.53.0 REQUIRED regex thread system unit_test_framework progr
 find_package(Protobuf 2.5.0 REQUIRED)
 find_package(jsoncpp REQUIRED)
 
+# generate protobuf source and header files
+# resulting source and headers are generated in binary dir
+# include binary dir to allow includes of headers
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+# needed to locate google/protobuf/desciptor.proto
 set(PROTOBUF_IMPORT_DIRS ${PROTOBUF_INCLUDE_DIRS})
+# generate files and add them to the build
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS src/config/config.proto)
-set(SRCS ${PROTO_SRCS} ${PROTO_HDRS} ${SRCS})
-message(${SRCS})
+set(SRCS ${SRCS} ${PROTO_SRCS} ${PROTO_HDRS})
 
 add_executable(trezord ${SRCS})
 
