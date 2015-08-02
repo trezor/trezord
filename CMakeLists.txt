@@ -58,16 +58,15 @@ target_link_libraries(trezord ${OS_LIBRARIES})
 # add dynamic libs
 find_package(CURL REQUIRED)
 find_package(libmicrohttpd REQUIRED)
+find_package(Boost 1.53.0 REQUIRED
+  regex thread system unit_test_framework program_options chrono)
 
 # add static libs
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
   set(BUILD_SHARED_LIBS off)
-  set(Boost_USE_STATIC_LIBS on)
   set(CMAKE_FIND_STATIC FIRST)
 endif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-find_package(Boost 1.53.0 REQUIRED
-  regex thread system unit_test_framework program_options chrono)
 find_package(Protobuf 2.5.0 REQUIRED)
 find_package(jsoncpp REQUIRED)
 
