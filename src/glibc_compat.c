@@ -1,7 +1,9 @@
 #include <stddef.h>
 
-#ifdef __amd64__
+#if defined(__amd64__)
    #define GLIBC_COMPAT_SYMBOL(X) __asm__(".symver __" #X "_compat," #X "@GLIBC_2.2.5");
+#elif defined(__arm__)
+   #define GLIBC_COMPAT_SYMBOL(X) __asm__(".symver __" #X "_compat," #X "@GLIBC_2.4");
 #else
    #define GLIBC_COMPAT_SYMBOL(X) __asm__(".symver __" #X "_compat," #X "@GLIBC_2.0");
 #endif
