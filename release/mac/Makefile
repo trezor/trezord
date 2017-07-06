@@ -22,7 +22,7 @@ all: .package
 
 $(SDK_FILE):
 	$(info Downloading OS X SDK ...)
-	wget -O $(SDK_FILE) $(SDK_URL)
+	curl -L $(SDK_URL) > $(SDK_FILE)
 
 shell: .docker-image
 	docker run -i -t $(VOL_MOUNT) $(IMAGETAG) /bin/bash
